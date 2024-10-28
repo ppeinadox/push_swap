@@ -6,7 +6,7 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:42:09 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/10/26 19:23:19 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:55:26 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,31 @@ int ft_strcmp (const char *str1, const char *str2)
 	}
 	return (0);
 }
+int check_duplicates(int number, t_list **nums)
+{
+	t_list *temp;
+	temp = *nums;
+	while (temp)
+	{
+		if (*((int *)(temp)->content) == number)
+			return (1);
+		temp = (temp)->next;
+	}
+	return (0);
+}
 int check_int (char **array, t_list **nums)
 {
-	int j;
 	int i;
 	t_list *node;
 	int *r;
 
-	j = 0;
 	i = 0;
 	while (array[i])
 	{
 		if(ft_strcmp(array[i], "0") == 0)
 		{
+			if (check_duplicates(0, nums) == 1)
+				return (1);
 			r = malloc(sizeof(int));
 			if(!r)
 				return (1);
@@ -59,10 +71,13 @@ int check_int (char **array, t_list **nums)
 				return(free(r), 1);
                         ft_lstadd_back(nums, node);
 		}
-		else if ((ft_atoi(array[i])) == 0)
+		else if ((ft_atoi(array[i])) == 0 || (ft_atoi(array[i])) < -2147483648
+			       	|| (ft_atoi(array[i])) > 2147483647)
 			return (1);
 		else
 		{	
+			if (check_duplicates((ft_atoi(array[i])), nums) == 1)
+				return (1);
 			r = malloc(sizeof(int));
 			if (!r)
 				return (1);
