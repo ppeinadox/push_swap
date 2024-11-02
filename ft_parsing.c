@@ -6,11 +6,12 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:42:09 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/10/28 16:55:26 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/01 23:12:55 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "push_swap.h"
 #include <stdio.h>
 
 void ft_free_split(char **array)
@@ -37,23 +38,23 @@ int ft_strcmp (const char *str1, const char *str2)
 	}
 	return (0);
 }
-int check_duplicates(int number, t_list **nums)
+int check_duplicates(int number, n_list **nums)
 {
-	t_list *temp;
+	n_list *temp;
 	temp = *nums;
 	while (temp)
 	{
-		if (*((int *)(temp)->content) == number)
+		if (temp->content == number)
 			return (1);
-		temp = (temp)->next;
+		temp = temp->next;
 	}
 	return (0);
 }
-int check_int (char **array, t_list **nums)
+int check_int (char **array, n_list **nums)
 {
 	int i;
-	t_list *node;
-	int *r;
+	n_list *node;
+	int r;
 
 	i = 0;
 	while (array[i])
@@ -62,14 +63,11 @@ int check_int (char **array, t_list **nums)
 		{
 			if (check_duplicates(0, nums) == 1)
 				return (1);
-			r = malloc(sizeof(int));
-			if(!r)
-				return (1);
-			*r = 0;	
-			node = ft_lstnew(r);
+			r = 0;
+			node = lstnewnum(r);
 			if (!node)
-				return(free(r), 1);
-                        ft_lstadd_back(nums, node);
+				return(1);
+                        lstadd_back_num(nums, node);
 		}
 		else if ((ft_atoi(array[i])) == 0 || (ft_atoi(array[i])) < -2147483648
 			       	|| (ft_atoi(array[i])) > 2147483647)
@@ -78,20 +76,18 @@ int check_int (char **array, t_list **nums)
 		{	
 			if (check_duplicates((ft_atoi(array[i])), nums) == 1)
 				return (1);
-			r = malloc(sizeof(int));
-			if (!r)
-				return (1);
-			*r = ft_atoi(array[i]);
-			node = ft_lstnew(r);
+			r = ft_atoi(array[i]);
+			node = lstnewnum(r);
 			if (!node)
-				return (free(r), 1);
-			ft_lstadd_back(nums, node);
+				return (1);
+			lstadd_back_num(nums, node);
 		}
 		i++;
 	}
 	return (0);
 }
-int process_format (int argc, char **argv, t_list **nums)
+
+int process_format (int argc, char **argv, n_list **nums)
 {
 	int i;
 	char **arr;
@@ -108,22 +104,28 @@ int process_format (int argc, char **argv, t_list **nums)
 	return (0);
 
 }
+
 int main (int argc, char **argv)
 {
-	t_list *nums = NULL;
+	n_list *nums = NULL;
 
 	if (process_format(argc, argv, &nums) != 0)
 	{	
 		printf("ERROR\n");
 		return (1);
 	}
-	else
+	n_list *temp = nums;
+	while (temp != NULL)
 	{
-		t_list *temp = nums;
-		while (temp != NULL)
-		{
-			printf("%d\n", *(int *)temp->content);
-			temp = temp->next;
-		}
+		printf("%d\n", temp->content);
+		temp = temp->next;
 	}
+	temp = nums;
+    	while (temp != NULL)
+	{
+		n_list *next = temp->next;
+		free(temp);
+		temp = next;
+	}
+	return 0;
 }
