@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 19:33:59 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/05/01 19:34:07 by ppeinado         ###   ########.fr       */
+/*   Created: 2024/11/20 16:21:03 by ppeinado          #+#    #+#             */
+/*   Updated: 2024/11/20 16:25:42 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	is_shorted(n_list *stack a)
 {
-	t_list	*lst2;
+	n_list tmp;
 
-	lst2 = ft_lstlast(*lst);
-	if (!lst2)
-		*lst = new;
-	else
-		lst2->next = new;
+	tmp = stack_a;
+	while (tmp->next != NULL)
+	{
+		if (tmp->content > tmp->next->content)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (1);
 }

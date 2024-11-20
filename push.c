@@ -6,7 +6,7 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:04:17 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/01 21:17:13 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/16 17:44:49 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 void push_a(n_list **a_stack,n_list **b_stack)
 {
 	n_list *first_b;
-	n_list *first_a;
 
 	if(*b_stack == NULL)
 		return ;
-	first_a = *a_stack;
 	first_b = *b_stack;
 	*b_stack = (*b_stack)->next;
-	first_b->next = first_a;
+	first_b->next = *a_stack;
 	*a_stack = first_b;
 	write(1, "pa\n", 3);
 }
@@ -31,14 +29,20 @@ void push_b(n_list **a_stack, n_list **b_stack)
 	if(*a_stack == NULL)
 		return ;
 	n_list *first_a;
-	n_list *first_b;
-
 	first_a = *a_stack;
-	first_b = *b_stack;
-
-	*a_stack = first_a->next;
-	first_a->next = first_b;
+	*a_stack = (*a_stack)->next;
+	first_a->next = *b_stack;
 	*b_stack = first_a;
+	/*if(*b_stack == NULL)
+	{
+		first_a->next = NULL;
+		*b_stack = first_a;
+	}
+	else
+	{
+		first_a->next = *b_stack;
+		*b_stack = first_a;
+	}*/
 	write(1, "pb\n", 3);
 
 }

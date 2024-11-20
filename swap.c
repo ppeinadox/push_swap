@@ -6,15 +6,16 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:35:42 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/10/29 12:00:31 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/16 13:47:17 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-void swap_a(t_list **a_stack)
+#include "push_swap.h"
+void swap_a(n_list **a_stack)
 {
-	t_list *first;
-	t_list *second;
+	n_list *first;
+	n_list *second;
 	
 	if (*a_stack == NULL || a_stack->next == NULL)
                 return ;
@@ -27,10 +28,10 @@ void swap_a(t_list **a_stack)
 
 }
 
-void swap_b(t_list **b_stack)
+void swap_b(n_list **b_stack)
 {
-	t_list *first;
-	t_list *second;
+	n_list *first;
+	n_list *second;
 	
 	if (*a_stack == NULL || a_stack->next == NULL)
 		return ;
@@ -42,7 +43,7 @@ void swap_b(t_list **b_stack)
 	write(1, "sb\n", 3);
 }
 
-void swap_ss(t_list **a_stack, t_list **b_stack)
+void swap_ss(n_list **a_stack, n_list **b_stack)
 {
 	swap_a(a_stack);
 	swap_b(b_stack);

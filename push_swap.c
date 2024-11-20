@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:42:09 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/01 23:12:55 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/16 13:57:25 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,18 +107,28 @@ int process_format (int argc, char **argv, n_list **nums)
 
 int main (int argc, char **argv)
 {
-	n_list *nums = NULL;
+	n_list	*nums = NULL;
+	int	*array;
+	n_list	*stack_b = NULL;
 
 	if (process_format(argc, argv, &nums) != 0)
 	{	
 		printf("ERROR\n");
 		return (1);
 	}
+	array = add_to_array(nums);
+	index_list(&nums, array);
+	radix_sort(&nums, &stack_b);
 	n_list *temp = nums;
 	while (temp != NULL)
 	{
-		printf("%d\n", temp->content);
+		printf("Número: %d\nÍndice%d\n", temp->content, temp->index);
 		temp = temp->next;
+	}
+	while (*array)
+	{
+		printf("Array: %d\n", *array);
+		array++;
 	}
 	temp = nums;
     	while (temp != NULL)
