@@ -6,7 +6,7 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:35:42 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/16 13:47:17 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:13:36 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void swap_a(n_list **a_stack)
 	n_list *first;
 	n_list *second;
 	
-	if (*a_stack == NULL || a_stack->next == NULL)
+	if (*a_stack == NULL || (*a_stack)->next == NULL)
                 return ;
 	first = *a_stack;
-	second = a_stack->next;
+	second = (*a_stack)->next;
 	first->next = second->next;
 	second->next = first;
 	*a_stack = second;
@@ -33,13 +33,13 @@ void swap_b(n_list **b_stack)
 	n_list *first;
 	n_list *second;
 	
-	if (*a_stack == NULL || a_stack->next == NULL)
+	if (*b_stack == NULL || (*b_stack)->next == NULL)
 		return ;
 	first = *b_stack;
 	second = first->next;
 	first->next = second->next;
 	second->next = first;
-	*b_stack = first;
+	*b_stack = second;
 	write(1, "sb\n", 3);
 }
 

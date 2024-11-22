@@ -6,7 +6,7 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:37:08 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/16 17:53:55 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:04:32 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ n_list  *lstnewnum(int content);
 void    lstadd_back_num(n_list **nums, n_list *node);
 int	count_nodes(n_list *nums);
 void    index_list(n_list **nums, int *array);
+int     max_list(n_list *stack);
 void ft_free_split(char **array);
 int ft_strcmp (const char *str1, const char *str2);
 int check_duplicates(int number, n_list **nums);
@@ -40,7 +41,11 @@ void push_a(n_list **a_stack,n_list **b_stack);
 void push_b(n_list **a_stack, n_list **b_stack);
 void  rotate_a(n_list **a_stack);
 void rotate_b(n_list **b_stack);
-
+void swap_a(n_list **a_stack);
+void swap_b(n_list **b_stack);
+void swap_ss(n_list **a_stack, n_list **b_stack);
+void	reverse_rotate_a(n_list **stack_a);
+void	reverse_rotate_b(n_list **stack_b);
 
 #endif
 
