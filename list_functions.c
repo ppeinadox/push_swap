@@ -6,7 +6,7 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 19:50:48 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/07 17:36:17 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:40:24 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,20 @@ void	index_list(n_list **nums, int *array)
 		else
 			i++;
 	}
+}
+
+int	max_list(n_list *stack)
+{
+	int max;
+
+	if(stack == NULL)
+		return (-1);
+	max = stack->content;
+	while (stack != NULL)
+	{
+		if (stack->content > max)
+			max = stack->content;
+		stack = stack->next;
+	}
+	return (max);
 }
