@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_functions.c                                   :+:      :+:    :+:   */
+/*   little_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:29:34 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/22 19:22:06 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:30:47 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,29 @@ void	tiny_sort(n_list **stack_a)
 		swap_a(stack_a);
 }
 
+void	short_sort(n_list **stack_a)
+{
+	n_list	*stack_b;
+
+	stack_b = NULL;
+	if(count_nodes(*stack_a) == 2)
+	{
+		if((*stack_a)->content < (*stack_a)->next->content)
+			swap_a(stack_a);
+		return ;
+	}
+	if(count_nodes(*stack_a) == 3)
+	{	
+		tiny_sort(stack_a);
+		return ;
+	}
+	while(count_nodes(*stack_a) > 3)
+		push_b(&stack_b, stack_a);
+	tiny_sort(stack_a);
+	stack_in_order(stack_a, &stack_b);
+	join(stack_a, &stack_b);
+}
+/*
 int	main(void)
 {
 	n_list	*stack;
@@ -58,4 +81,4 @@ int	main(void)
 		printf("%d\n",stack->content);
 		stack = stack->next;
 	}
-}
+}*/

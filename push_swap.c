@@ -6,7 +6,7 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:42:09 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/16 13:57:25 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:45:24 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int main (int argc, char **argv)
 	}
 	array = add_to_array(nums);
 	index_list(&nums, array);
-	radix_sort(&nums, &stack_b);
+	sort(&stack_a, &stack_b, &array, len); //Hacer len
 	n_list *temp = nums;
 	while (temp != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:24:38 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/16 13:46:16 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/23 19:02:19 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	reverse_rotate_a(n_list **stack_a)
 	n_list *penultimate;
 
 	temp = *stack_a;
+	penultimate = NULL;
 	while (temp->next != NULL)
 	{
 		penultimate = temp;
@@ -24,7 +25,7 @@ void	reverse_rotate_a(n_list **stack_a)
 	}
 	penultimate->next = NULL;
 	temp->next = *stack_a;
-	*stack_a = penultimate;
+	*stack_a = temp;
 }
 
 void	reverse_rotate_b(n_list **stack_b)

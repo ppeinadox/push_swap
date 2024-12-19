@@ -6,7 +6,7 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:37:08 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/22 19:04:32 by ppeinado         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:39:35 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ void swap_b(n_list **b_stack);
 void swap_ss(n_list **a_stack, n_list **b_stack);
 void	reverse_rotate_a(n_list **stack_a);
 void	reverse_rotate_b(n_list **stack_b);
+void    tiny_sort(n_list **stack_a);
+n_list  *looking_for_value(n_list *stack, int pos);
+int index_max(n_list *stack);
+void    stack_in_order(n_list **stack_a, n_list **stack_b);
+void    join(n_list **stack_a, n_list **stack_b);
+int     is_sorted(n_list *stack_a);
+
 
 #endif
 
