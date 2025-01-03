@@ -14,33 +14,10 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void ft_free_split(char **array)
+int	check_duplicates(int number, n_list **nums)
 {
-	int i;
+	n_list	*temp;
 
-	i = 0;
-	while (array[i++] != NULL)
-		free(array[i]);
-	free (array);
-}
-
-int ft_strcmp (const char *str1, const char *str2)
-{
-	while (*str1)
-	{
-		if (*str1 == *str2)
-		{
-			str1++;
-			str2++;
-		}
-		if (*str1 != *str2)
-			return (1);
-	}
-	return (0);
-}
-int check_duplicates(int number, n_list **nums)
-{
-	n_list *temp;
 	temp = *nums;
 	while (temp)
 	{
@@ -50,47 +27,56 @@ int check_duplicates(int number, n_list **nums)
 	}
 	return (0);
 }
-int check_int (char **array, n_list **nums)
+
+int	check_int(char **array, n_list **nums)
 {
-	int i;
-	n_list *node;
-	int r;
+	int	i;
+	int	ret;
+	int	r;
 
 	i = 0;
+	ret = 0;
+	r = 0;
 	while (array[i])
 	{
-		if(ft_strcmp(array[i], "0") == 0)
+		if (ft_strcmp(array[i], "0") == 0)
 		{
-			if (check_duplicates(0, nums) == 1)
+			ret = add_node_list(array, nums, 0);
+			if (ret != 0)
 				return (1);
-			r = 0;
-			node = lstnewnum(r);
-			if (!node)
-				return(1);
-                        lstadd_back_num(nums, node);
 		}
-		else if ((ft_atoi(array[i])) == 0 || (ft_atoi(array[i])) < -2147483648
-			       	|| (ft_atoi(array[i])) > 2147483647)
+		else if ((ft_atoi(array[i])) == 0
+			|| (ft_atoi(array[i])) < -2147483648 || (ft_atoi(array[i])) > 2147483647)
 			return (1);
 		else
-		{	
-			if (check_duplicates((ft_atoi(array[i])), nums) == 1)
-				return (1);
+		{
 			r = ft_atoi(array[i]);
-			node = lstnewnum(r);
-			if (!node)
+			ret = add_node_list(array, nums, r);
+			if (ret != 0)
 				return (1);
-			lstadd_back_num(nums, node);
 		}
 		i++;
 	}
 	return (0);
 }
 
-int process_format (int argc, char **argv, n_list **nums)
+int	add_node_list(char **array, n_list **nums, int r)
 {
-	int i;
-	char **arr;
+	n_list	*node;
+
+	if (check_duplicates(r, nums) == 1)
+		return (1);
+	node = lstnewnum(r);
+	if (!node)
+		return (1);
+	lstadd_back_num(nums, node);
+	return (0);
+}
+
+int	process_format(int argc, char **argv, n_list **nums)
+{
+	int		i;
+	char	**arr;
 
 	i = 1;
 	while (i < argc)
@@ -102,24 +88,25 @@ int process_format (int argc, char **argv, n_list **nums)
 		i++;
 	}
 	return (0);
-
 }
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	n_list	*nums = NULL;
-	int	*array;
+	n_list	*stack_a = NULL;
+	int *array;
 	n_list	*stack_b = NULL;
 
-	if (process_format(argc, argv, &nums) != 0)
+	if (argc < 2)
+		return ((1), write (1, "\n", 1));
+	if (process_format(argc, argv, &stack_a) != 0)
 	{	
 		printf("ERROR\n");
 		return (1);
 	}
-	array = add_to_array(nums);
-	index_list(&nums, array);
-	sort(&stack_a, &stack_b, &array, len); //Hacer len
-	n_list *temp = nums;
+	array = add_to_array(stack_a);
+	index_list(&stack_a, array);
+	sort(&stack_a, &stack_b, &array);
+	/*n_list *temp = stack_a;
 	while (temp != NULL)
 	{
 		printf("Número: %d\nÍndice%d\n", temp->content, temp->index);
@@ -130,12 +117,13 @@ int main (int argc, char **argv)
 		printf("Array: %d\n", *array);
 		array++;
 	}
-	temp = nums;
+	temp = stack_a;
     	while (temp != NULL)
 	{
 		n_list *next = temp->next;
 		free(temp);
 		temp = next;
-	}
+	}*/
 	return 0;
 }
+

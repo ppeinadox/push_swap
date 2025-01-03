@@ -12,15 +12,14 @@
 
 #include "push_swap.h"
 
-int min_index(n_list *stack)
+int	min_index(n_list *stack)
 {
 	n_list	*temp;
-	int	min;
+	int		min;
 
 	temp = stack;
-
 	min = temp->index;
-	while(temp->next != NULL)
+	while (temp->next != NULL)
 	{
 		if (min > temp->index)
 			min = temp->index;
@@ -28,6 +27,7 @@ int min_index(n_list *stack)
 	}
 	return (min);
 }
+
 void	tiny_sort(n_list **stack_a)
 {
 	int	max;
@@ -46,18 +46,18 @@ void	short_sort(n_list **stack_a)
 	n_list	*stack_b;
 
 	stack_b = NULL;
-	if(count_nodes(*stack_a) == 2)
+	if (count_nodes(*stack_a) == 2)
 	{
-		if((*stack_a)->content < (*stack_a)->next->content)
+		if ((*stack_a)->content < (*stack_a)->next->content)
 			swap_a(stack_a);
 		return ;
 	}
-	if(count_nodes(*stack_a) == 3)
-	{	
+	if (count_nodes(*stack_a) == 3)
+	{
 		tiny_sort(stack_a);
 		return ;
 	}
-	while(count_nodes(*stack_a) > 3)
+	while (count_nodes(*stack_a) > 3)
 		push_b(&stack_b, stack_a);
 	tiny_sort(stack_a);
 	stack_in_order(stack_a, &stack_b);

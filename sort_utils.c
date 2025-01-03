@@ -20,26 +20,29 @@ int	is_sorted(n_list *stack_a)
 	while (temp->next != NULL)
 	{
 		if (temp->content > temp->next->content)
-			return (1);
+			return (0);
 		temp = temp->next;
 	}
 	return (1);
 }
 
-void    sort(n_list *stack_a, n_list *stack_b, int *array, int len)
+void    sort(n_list **stack_a, n_list **stack_b, int **array)
 {
-        if (is_sorted(stack_a) == 0)
+        int len;
+	
+	len = count_nodes(*stack_a);
+	if (is_sorted(*stack_a) == 1)
         {
                 free (array);
                 //free_stack(stack_a);
         }
         else if (len == 2)
-                swap_a(&stack_a);
+                swap_a(stack_a);
         else if (len == 3)
-                tiny_sort(&stack_a);
+                tiny_sort(stack_a);
 	else if (len <= 5)
-		short_sort(&stack_a);
-	else if (len > 5)
-		big_sort();
+		short_sort(stack_a);
+	else
+		big_sort(stack_a, stack_b);
 }
 
