@@ -48,7 +48,7 @@ void	short_sort(n_list **stack_a)
 	stack_b = NULL;
 	if (count_nodes(*stack_a) == 2)
 	{
-		if ((*stack_a)->content < (*stack_a)->next->content)
+		if ((*stack_a)->content > (*stack_a)->next->content)
 			swap_a(stack_a);
 		return ;
 	}
@@ -58,7 +58,7 @@ void	short_sort(n_list **stack_a)
 		return ;
 	}
 	while (count_nodes(*stack_a) > 3)
-		push_b(&stack_b, stack_a);
+		push_b(stack_a, &stack_b);
 	tiny_sort(stack_a);
 	stack_in_order(stack_a, &stack_b);
 	join(stack_a, &stack_b);

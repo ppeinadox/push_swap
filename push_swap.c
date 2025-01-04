@@ -41,17 +41,16 @@ int	check_int(char **array, n_list **nums)
 	{
 		if (ft_strcmp(array[i], "0") == 0)
 		{
-			ret = add_node_list(array, nums, 0);
+			ret = add_node_list(nums, 0);
 			if (ret != 0)
 				return (1);
 		}
-		else if ((ft_atoi(array[i])) == 0
-			|| (ft_atoi(array[i])) < -2147483648 || (ft_atoi(array[i])) > 2147483647)
-			return (1);
+		else if (ft_atoi(array[i]) == 0) /*
+			|| (ft_atoi(array[i])) < -2147483648 || (ft_atoi(array[i])) > 2147483647) */			return (1);
 		else
 		{
 			r = ft_atoi(array[i]);
-			ret = add_node_list(array, nums, r);
+			ret = add_node_list(nums, r);
 			if (ret != 0)
 				return (1);
 		}
@@ -60,7 +59,7 @@ int	check_int(char **array, n_list **nums)
 	return (0);
 }
 
-int	add_node_list(char **array, n_list **nums, int r)
+int	add_node_list(n_list **nums, int r)
 {
 	n_list	*node;
 
@@ -83,8 +82,8 @@ int	process_format(int argc, char **argv, n_list **nums)
 	{
 		arr = ft_split(argv[i], ' ');
 		if (check_int(arr, nums) != 0)
-			return (ft_free_split(arr), 1);
-		ft_free_split(arr);
+			return (ft_free(arr), 1);
+		ft_free(arr);
 		i++;
 	}
 	return (0);
@@ -97,33 +96,37 @@ int	main(int argc, char **argv)
 	n_list	*stack_b = NULL;
 
 	if (argc < 2)
-		return ((1), write (1, "\n", 1));
+		return (write (1, "\n", 1));
+	if (argc == 2)
+		return (0);
 	if (process_format(argc, argv, &stack_a) != 0)
 	{	
 		printf("ERROR\n");
-		return (1);
+		return (free_list(stack_a), 1);
 	}
 	array = add_to_array(stack_a);
 	index_list(&stack_a, array);
-	sort(&stack_a, &stack_b, &array);
-	/*n_list *temp = stack_a;
-	while (temp != NULL)
-	{
-		printf("Número: %d\nÍndice%d\n", temp->content, temp->index);
-		temp = temp->next;
-	}
-	while (*array)
-	{
-		printf("Array: %d\n", *array);
-		array++;
-	}
-	temp = stack_a;
-    	while (temp != NULL)
-	{
-		n_list *next = temp->next;
-		free(temp);
-		temp = next;
-	}*/
+	sort(&stack_a, &stack_b);
+	free(array);
+	free_list(stack_a);
 	return 0;
 }
 
+   /*n_list *temp = stack_a;
+        while (temp != NULL)
+        {
+                printf("Número: %d\nÍndice%d\n", temp->content, temp->index);
+                temp = temp->next;
+        }
+        while (*array)
+        {
+                printf("Array: %d\n", *array);
+                array++;
+        }
+        temp = stack_a;
+        while (temp != NULL)
+        {
+                n_list *next = temp->next;
+                free(temp);
+                temp = next;
+        }*/

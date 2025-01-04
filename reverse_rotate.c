@@ -26,6 +26,7 @@ void	reverse_rotate_a(n_list **stack_a)
 	penultimate->next = NULL;
 	temp->next = *stack_a;
 	*stack_a = temp;
+	write(1, "rra\n", 4);
 }
 
 void	reverse_rotate_b(n_list **stack_b)
@@ -42,6 +43,7 @@ void	reverse_rotate_b(n_list **stack_b)
 	penultimate->next = NULL;
 	temp->next = *stack_b;
 	*stack_b = temp;
+	write(1, "rrb\n", 4);
 }
 
 //void	reverse_rotate_a_b(n_list **stack a, **stack_b)

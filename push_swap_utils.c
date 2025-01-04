@@ -14,13 +14,18 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void	ft_free_split(char **array)
+void	ft_free(char **array)
 {
 	int	i;
 
 	i = 0;
-	while (array[i++] != NULL)
+	if (!array)
+		return ;
+	while (array[i] != NULL)
+	{
 		free(array[i]);
+		i++;
+	}
 	free (array);
 }
 
@@ -37,4 +42,16 @@ int	ft_strcmp(const char *str1, const char *str2)
 			return (1);
 	}
 	return (0);
+}
+
+void	free_list(n_list *lst)
+{
+	n_list *temp;
+
+	while (lst != NULL)
+	{
+		temp = lst->next;
+		free(lst);
+		lst = temp;
+	}
 }

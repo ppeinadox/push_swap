@@ -29,7 +29,7 @@ void    lstadd_back_num(n_list **nums, n_list *node);
 int	count_nodes(n_list *nums);
 void    index_list(n_list **nums, int *array);
 int     max_list(n_list *stack);
-void	ft_free_split(char **array);
+void	ft_free(char **array);
 int	ft_strcmp (const char *str1, const char *str2);
 int	check_duplicates(int number, n_list **nums);
 int	check_int (char **array, n_list **nums);
@@ -51,10 +51,11 @@ int	index_max(n_list *stack);
 void    stack_in_order(n_list **stack_a, n_list **stack_b);
 void    join(n_list **stack_a, n_list **stack_b);
 int     is_sorted(n_list *stack_a);
-int	add_node_list(char **array, n_list **nums, int r);
-void    sort(n_list **stack_a, n_list **stack_b, int **array);
+int	add_node_list(n_list **nums, int r);
+void    sort(n_list **stack_a, n_list **stack_b);
 void    quick_sort(int *array, int init, int end);
 void    short_sort(n_list **stack_a);
+void    free_list(n_list *lst);
 
 #endif
 
