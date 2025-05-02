@@ -1,0 +1,3 @@
+Manejar max int y min int
+Manejar caso de un solo número
+Si tiene 4 o 5 números no comprueba si estan ordenados

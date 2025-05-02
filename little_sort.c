@@ -46,6 +46,11 @@ void	short_sort(t_list_push **stack_a)
 	t_list_push	*stack_b;
 
 	stack_b = NULL;
+
+	if (is_sorted(*stack_a))
+		return ;
+	if (count_nodes(*stack_a) == 1)
+		return ;
 	if (count_nodes(*stack_a) == 2)
 	{
 		if ((*stack_a)->content > (*stack_a)->next->content)
