@@ -44,9 +44,9 @@ int	ft_strcmp(const char *str1, const char *str2)
 	return (0);
 }
 
-void	free_list(n_list *lst)
+void	free_list(t_list_push *lst)
 {
-	n_list *temp;
+	t_list_push	*temp;
 
 	while (lst != NULL)
 	{

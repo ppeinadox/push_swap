@@ -6,15 +6,15 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:21:03 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/12/19 17:45:29 by ppeinado         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:59:13 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(n_list *stack_a)
+int	is_sorted(t_list_push *stack_a)
 {
-	n_list *temp;
+	t_list_push	*temp;
 
 	temp = stack_a;
 	while (temp->next != NULL)
@@ -26,19 +26,13 @@ int	is_sorted(n_list *stack_a)
 	return (1);
 }
 
-void    sort(n_list **stack_a, n_list **stack_b)
+void	sort(t_list_push **stack_a, t_list_push **stack_b)
 {
-        int len;
-	
+	int	len;
+
 	len = count_nodes(*stack_a);
-	/*if (is_sorted(*stack_a) == 1)
-        {
-                free(*array);
-                //free_stack(stack_a);
-        }*/
 	if (len <= 5)
 		short_sort(stack_a);
 	else
 		big_sort(stack_a, stack_b);
 }
-

@@ -6,16 +6,16 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:40:40 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/23 18:20:46 by ppeinado         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:33:24 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-n_list	*looking_for_value(n_list *stack, int pos)
+t_list_push	*looking_for_value(t_list_push *stack, int pos)
 {
-	int	i;
-	n_list	*temp;
+	int			i;
+	t_list_push	*temp;
 
 	i = 0;
 	temp = stack;

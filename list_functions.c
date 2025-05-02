@@ -6,16 +6,17 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 19:50:48 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/22 17:40:24 by ppeinado         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:32:21 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-n_list	*lstnewnum(int content)
+t_list_push	*lstnewnum(int content)
 {
-	n_list *node;
-	node = malloc(sizeof(n_list));
+	t_list_push	*node;
+
+	node = malloc(sizeof(t_list_push));
 	if (!node)
 		exit(1);
 	node->content = content;
@@ -24,24 +25,24 @@ n_list	*lstnewnum(int content)
 	return (node);
 }
 
-void	lstadd_back_num(n_list	**nums, n_list *node)
+void	lstadd_back_num(t_list_push	**nums, t_list_push *node)
 {
+	t_list_push	*temp;
+
 	if (*nums == NULL)
 	{
 		*nums = node;
 		return ;
 	}
-	n_list *temp;
-
 	temp = *nums;
 	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = node;
 }
 
-int	count_nodes(n_list *nums)
+int	count_nodes(t_list_push *nums)
 {
-	int c;
+	int	c;
 
 	c = 0;
 	while (nums)
@@ -52,16 +53,16 @@ int	count_nodes(n_list *nums)
 	return (c);
 }
 
-void	index_list(n_list **nums, int *array)
+void	index_list(t_list_push **nums, int *array)
 {
-	n_list *temp;
-	int i;
-	
+	t_list_push	*temp;
+	int			i;
+
 	temp = *nums;
 	i = 0;
 	while (temp)
 	{
-		if(temp->content == array[i])
+		if (temp->content == array[i])
 		{
 			temp->index = i;
 			temp = temp->next;
@@ -72,11 +73,11 @@ void	index_list(n_list **nums, int *array)
 	}
 }
 
-int	max_list(n_list *stack)
+int	max_list(t_list_push *stack)
 {
-	int max;
+	int	max;
 
-	if(stack == NULL)
+	if (stack == NULL)
 		return (-1);
 	max = stack->content;
 	while (stack != NULL)

@@ -6,7 +6,7 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:42:09 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/12/19 17:45:24 by ppeinado         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:50:10 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-int	check_duplicates(int number, n_list **nums)
+int	check_duplicates(int number, t_list_push **nums)
 {
-	n_list	*temp;
+	t_list_push	*temp;
 
 	temp = *nums;
 	while (temp)
@@ -28,7 +28,7 @@ int	check_duplicates(int number, n_list **nums)
 	return (0);
 }
 
-int	check_int(char **array, n_list **nums)
+int	check_int(char **array, t_list_push **nums)
 {
 	int	i;
 	int	ret;
@@ -42,26 +42,24 @@ int	check_int(char **array, n_list **nums)
 		if (ft_strcmp(array[i], "0") == 0)
 		{
 			ret = add_node_list(nums, 0);
-			if (ret != 0)
-				return (1);
 		}
-		else if (ft_atoi(array[i]) == 0) /*
-			|| (ft_atoi(array[i])) < -2147483648 || (ft_atoi(array[i])) > 2147483647) */			return (1);
+		else if (ft_atoi(array[i]) == 0)
+			return (1);
 		else
 		{
 			r = ft_atoi(array[i]);
 			ret = add_node_list(nums, r);
-			if (ret != 0)
-				return (1);
 		}
+		if (ret != 0)
+			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	add_node_list(n_list **nums, int r)
+int	add_node_list(t_list_push **nums, int r)
 {
-	n_list	*node;
+	t_list_push	*node;
 
 	if (check_duplicates(r, nums) == 1)
 		return (1);
@@ -72,7 +70,7 @@ int	add_node_list(n_list **nums, int r)
 	return (0);
 }
 
-int	process_format(int argc, char **argv, n_list **nums)
+int	process_format(int argc, char **argv, t_list_push **nums)
 {
 	int		i;
 	char	**arr;
@@ -91,16 +89,16 @@ int	process_format(int argc, char **argv, n_list **nums)
 
 int	main(int argc, char **argv)
 {
-	n_list	*stack_a = NULL;
-	int *array;
-	n_list	*stack_b = NULL;
+	t_list_push	*stack_a;
+	int			*array;
+	t_list_push	*stack_b;
 
+	stack_a = NULL;
+	stack_b = NULL;
 	if (argc < 2)
 		return (write (1, "\n", 1));
-	if (argc == 2)
-		return (0);
 	if (process_format(argc, argv, &stack_a) != 0)
-	{	
+	{
 		printf("ERROR\n");
 		return (free_list(stack_a), 1);
 	}
@@ -109,24 +107,5 @@ int	main(int argc, char **argv)
 	sort(&stack_a, &stack_b);
 	free(array);
 	free_list(stack_a);
-	return 0;
+	return (0);
 }
-
-   /*n_list *temp = stack_a;
-        while (temp != NULL)
-        {
-                printf("Número: %d\nÍndice%d\n", temp->content, temp->index);
-                temp = temp->next;
-        }
-        while (*array)
-        {
-                printf("Array: %d\n", *array);
-                array++;
-        }
-        temp = stack_a;
-        while (temp != NULL)
-        {
-                n_list *next = temp->next;
-                free(temp);
-                temp = next;
-        }*/

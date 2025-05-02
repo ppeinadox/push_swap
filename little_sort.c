@@ -6,16 +6,16 @@
 /*   By: ppeinado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:29:34 by ppeinado          #+#    #+#             */
-/*   Updated: 2024/11/23 18:30:47 by ppeinado         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:53:25 by ppeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	min_index(n_list *stack)
+int	min_index(t_list_push *stack)
 {
-	n_list	*temp;
-	int		min;
+	t_list_push	*temp;
+	int			min;
 
 	temp = stack;
 	min = temp->index;
@@ -28,7 +28,7 @@ int	min_index(n_list *stack)
 	return (min);
 }
 
-void	tiny_sort(n_list **stack_a)
+void	tiny_sort(t_list_push **stack_a)
 {
 	int	max;
 
@@ -41,9 +41,9 @@ void	tiny_sort(n_list **stack_a)
 		swap_a(stack_a);
 }
 
-void	short_sort(n_list **stack_a)
+void	short_sort(t_list_push **stack_a)
 {
-	n_list	*stack_b;
+	t_list_push	*stack_b;
 
 	stack_b = NULL;
 	if (count_nodes(*stack_a) == 2)
@@ -66,10 +66,10 @@ void	short_sort(n_list **stack_a)
 /*
 int	main(void)
 {
-	n_list	*stack;
-	n_list	*one = lstnewnum(7);
-	n_list	*two = lstnewnum(5);
-	n_list	*three = lstnewnum(4);
+	t_list_push	*stack;
+	t_list_push	*one = lstnewnum(7);
+	t_list_push	*two = lstnewnum(5);
+	t_list_push	*three = lstnewnum(4);
 
 	stack = NULL;
 	lstadd_back_num(&stack, one);
