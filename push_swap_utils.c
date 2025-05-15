@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 #include <stdio.h>
 
@@ -54,4 +53,29 @@ void	free_list(t_list_push *lst)
 		free(lst);
 		lst = temp;
 	}
+}
+
+long	ft_atol(char *str)
+{
+	long	resultado;
+	int	signo;
+
+	resultado = 0;
+	signo = 1;
+	while (*str == ' ')
+		str++;
+	if (*str == '-')
+	{
+		signo = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		resultado = resultado * 10 + (*str - '0');
+		str++;
+	}
+	resultado = resultado * signo;
+	if (resultado < -2147483648 || resultado > 2147483647)
+		return (0);
+	return (resultado);
 }

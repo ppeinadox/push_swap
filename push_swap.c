@@ -43,11 +43,11 @@ int	check_int(char **array, t_list_push **nums)
 		{
 			ret = add_node_list(nums, 0);
 		}
-		else if (ft_atoi(array[i]) == 0)
+		else if (ft_atol(array[i]) == 0)
 			return (1);
 		else
 		{
-			r = ft_atoi(array[i]);
+			r = ft_atol(array[i]);
 			ret = add_node_list(nums, r);
 		}
 		if (ret != 0)

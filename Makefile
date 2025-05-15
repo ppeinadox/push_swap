@@ -1,50 +1,37 @@
 NAME     = push_swap
 
 CC       = gcc
-
 FLAGS    = -Wall -Wextra -Werror
+RM       = rm -f
+LIBFT    = libft.a
 
-LIBFT = libft.a
+SRCS     = big_sort.c \
+           list_functions.c \
+           list_functions_cont.c \
+           little_sort.c \
+           push.c \
+           push_swap.c \
+           push_swap_utils.c \
+           reverse_rotate.c \
+           rotate.c \
+           sort_array.c \
+           sort_utils.c \
+           swap.c
 
-SRCS     =      big_sort.c \
-		list_functions.c \
-                list_functions_cont.c \
-                little_sort.c \
-                push.c \
-                push_swap.c \
-                push_swap_utils.c \
-                reverse_rotate.c \
-                rotate.c \
-                sort_array.c \
-                sort_utils.c \
-                swap.c \
-                          
-OBJS      = $(SRCS:.c=.o)
+OBJS     = $(SRCS:.c=.o)
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-CLR_RMV		:= \033[0m
-RED		    := \033[1;31m
-GREEN		:= \033[1;32m
-YELLOW		:= \033[1;33m
-BLUE		:= \033[1;34m
-CYAN 		:= \033[1;36m
-RM		    := rm -f
+${NAME}: ${OBJS}
+	${CC} ${FLAGS} -o ${NAME} ${OBJS} ${LIBFT}
 
-${NAME}:	${OBJS}
-			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-			${CC} ${FLAGS} -o ${NAME} ${OBJS} libft.a
-			@echo "$(GREEN)$(NAME) created[0m ✔️"
-
-all:		${NAME}
+all: ${NAME}
 
 clean:
-			@ ${RM} *.o */*.o */*/*.o
-			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
+	@${RM} *.o
 
-fclean:		clean
-			@ ${RM} ${NAME}
-			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
+fclean: clean
+	@${RM} ${NAME}
 
-re:			fclean all
+re: fclean all

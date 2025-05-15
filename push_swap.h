@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft.h"
 
 typedef struct int_list
 {
@@ -31,6 +32,7 @@ void				index_list(t_list_push **nums, int *array);
 int					max_list(t_list_push *stack);
 void				ft_free(char **array);
 int					ft_strcmp(const char *str1, const char *str2);
+long				ft_atol(char *str);
 int					check_duplicates(int number, t_list_push **nums);
 int					check_int(char **array, t_list_push **nums);
 int					process_format(int argc, char **argv, t_list_push **nums);
